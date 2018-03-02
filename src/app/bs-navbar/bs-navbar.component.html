@@ -13,25 +13,49 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
         </li>
-        <li ngbDropdown class="nav-item dropdown ">
-          <a  class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>Tour Operators</a>
+
+        <ng-template  #anonynimousUser1>
+            <li ngbDropdown class="nav-item dropdown">
+              <a class="nav-link" ngbDropdownToggle>Tour Operator</a>
+              <div ngbDropdownMenu  class="dropdown-menu" aria-labelledby="dropdown02">
+                  <a class="dropdown-item" routerLink="/login">Login</a>
+              </div>
+            </li>
+          </ng-template>
+
+        <li ngbDropdown *ngIf="auth.user$ | async as user; else anonynimousUser1" class="nav-item dropdown ">
+          <a  class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+            {{user.displayName}}</a>
           <div ngbDropdownMenu  class="dropdown-menu " aria-labelledby="dropdown01">
-            <a class="dropdown-item" routerLink="/login">My Account</a>
+            <a  class="dropdown-item" routerLink="#">My Account</a>
             <a class="dropdown-item" routerLink="tour-operator/tours/new">Add Tour Listing</a>
             <a class="dropdown-item" routerLink="/tour-operator/bookings">Manage Bookings</a>
-            <a class="dropdown-item">Logout</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </li>
-        <li ngbDropdown  class="nav-item dropdown">
-            <a   class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>Adminstrator</a>
+
+        <ng-template  #anonynimousUser2>
+          <li ngbDropdown class="nav-item dropdown">
+            <a class="nav-link" ngbDropdownToggle>Admin</a>
             <div ngbDropdownMenu  class="dropdown-menu" aria-labelledby="dropdown02">
-              <a class="dropdown-item" routerLink="/login">My Account</a>
+                <a class="dropdown-item" routerLink="/login">Login</a>
+            </div>
+          </li>
+        </ng-template>
+
+        <li ngbDropdown *ngIf="auth.user$ | async as user; else anonynimousUser2"  class="nav-item dropdown">
+            <a   class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+              {{ user.displayName }}
+            </a>
+            <div ngbDropdownMenu  class="dropdown-menu" aria-labelledby="dropdown02">
+              <a class="dropdown-item" routerLink="#">My Account</a>
               <a class="dropdown-item" routerLink="/admin/bookings">Manage Bookings</a>
               <a class="dropdown-item" routerLink="admin/tours">Manage Tours</a>
               <a class="dropdown-item" routerLink="admin/tour-operators">Manage Tour Operators</a>
-              <a class="dropdown-item">Logout</a>
+              <a class="dropdown-item"  (click)="logout()" >Logout</a>
             </div>
-          </li>
+        </li>
+
       </ul>
  
     </div>

@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -63,25 +65,30 @@ import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.co
       { path:'tours/<int:id>', component:TourDetailsComponent },
       { path:'tour-operators', component: TourOperatorsComponent },
       { path:'tour-operators/<int:id>', component: TourOperatorsComponent },
-      { path:'shopping-cart', component: ShoppingCartComponent  },
-      { path:'check-out', component:CheckOutComponent  },
-      { path:'order-success', component:OrderSuccessComponent },
+
+      //protected- must login first
+      { path:'shopping-cart', component: ShoppingCartComponent, canActivate:[AuthGuard]  },
+      { path:'check-out', component:CheckOutComponent, canActivate:[AuthGuard]  },
+      { path:'order-success', component:OrderSuccessComponent, canActivate:[AuthGuard] },
 
       //Routes for tour operator
-      { path:'tour-operator/tours/new', component: TourListingFormComponent },
-      { path:'tour-operator/tours', component: TourOperatorListingComponent },
-      { path:'tour-operator/bookings', component:  TourOperatorBookingsComponent },
+      { path:'tour-operator/tours/new', component: TourListingFormComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/tours', component: TourOperatorListingComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/bookings', component:  TourOperatorBookingsComponent, canActivate:[AuthGuard] },
 
       //Routes for admin
-      { path:'admin/tours', component: AdminToursComponent }, 
-      { path:'admin/tour-operators', component: AdminTourOperatorsComponent }, 
-      { path:'admin/bookings', component: AdminBookingsComponent },
-      { path:'admin/tourists', component: AdminTouristsComponent}
+      { path:'admin/tours', component: AdminToursComponent, canActivate:[AuthGuard] }, 
+      { path:'admin/tour-operators', component: AdminTourOperatorsComponent, canActivate:[AuthGuard] }, 
+      { path:'admin/bookings', component: AdminBookingsComponent, canActivate:[AuthGuard] },
+      { path:'admin/tourists', component: AdminTouristsComponent, canActivate:[AuthGuard] }
 
     ])
 
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
