@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { AngularFireModule } from 'angularfire2';
@@ -87,7 +88,8 @@ import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.co
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
