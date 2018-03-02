@@ -1,3 +1,5 @@
+import { TourOperatorAuthGuard } from './tour-operator-auth-guard.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
@@ -89,7 +91,9 @@ import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.co
   providers: [
     AuthService,
     AuthGuard,
-    UserService
+    UserService,
+    AdminAuthGuard,
+    TourOperatorAuthGuard
   ],
   bootstrap: [AppComponent]
 })

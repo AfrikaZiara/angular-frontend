@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase} from 'angularfire2/database';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class UserService {
@@ -10,6 +11,10 @@ export class UserService {
       name: user.displayName,
       email: user.email
     });
+  }
+
+  get(uid: string){
+    return this.db.object('/users/'+ uid);
   }
 
 }
