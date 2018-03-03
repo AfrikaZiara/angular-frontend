@@ -10,8 +10,16 @@ export class LoginComponent {
 
   constructor( private auth: AuthService) { }
 
-  login(){
-    this.auth.login()
+  signInWithGoogle(){
+    this.auth.signInWithGoogle();
+  }
+
+  signInWithFacebook() {
+    this.auth.signInWithFacebook();
+  }
+
+  signInWithGithub(){
+    this.auth.signInWithGithub();
   }
 
 }

@@ -13,11 +13,23 @@ export class AuthService {
     this.user$ = this.afauth.authState;
    }
 
-  login(){
+   signInWithGoogle(){
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
-    this.afauth.auth.signInWithRedirect( new firebase.auth.GoogleAuthProvider());
+    this.afauth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
     
+  }
+
+  signInWithFacebook(){
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+    this.afauth.auth.signInWithPopup( new firebase.auth.FacebookAuthProvider());
+  }
+
+  signInWithGithub(){
+    let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    localStorage.setItem('returnUrl', returnUrl);
+    this.afauth.auth.signInWithPopup( new firebase.auth.GithubAuthProvider());
   }
 
   logout(){
