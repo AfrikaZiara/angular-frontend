@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Injectable()
 export class AuthService {
 
@@ -20,6 +21,6 @@ export class AuthService {
   }
 
   logout(){
-    this.afauth.auth.signOut;
+    this.afauth.auth.signOut();
   }
 }
