@@ -1,0 +1,57 @@
+
+<div class="row">
+
+  <div class="col-md-6">
+      <form #f="ngForm" (ngSubmit)="save(f.value)"> 
+
+          <div class="form-group">
+            <label for="businessName">Business Name</label>
+            <input #businessName="ngModel"  ngModel name="businessName" id="businessName" type="text" class="form-control" required>
+          </div>
+        
+          <div class="form-group">
+              <label for="businessDescription"> Description</label>
+              <textarea #description="ngModel"  ngModel name="description" id="businessDescription" name="businessDescription"  cols="15" rows="5" class="form-control" required></textarea>
+          </div>
+        
+          <div class="form-group">
+              <label for="businessCategory"> Category</label>
+              <select #category="ngModel" ngModel name="category" id="businessCategory" class="form-control" required>
+                <option select="selected">--Select Category--</option>
+                <option value="Tour Operator"> Tour Operator</option>
+                <option value="Travel Agent"> Travel Agent</option>
+              </select>
+          </div>
+        
+          <div class="form-group">
+            <label for="businessPhone"> Phone</label>
+              <input  #phone="ngModel" ngModel name="phone" id="businessPhone" type="text" class="form-control" required>
+          </div>
+        
+        
+          <div class="form-group">
+            <label for="businessEmail">Email</label>
+            <input  #email="ngModel" ngModel name="email" id="businessEmail" type="text" class="form-control" required>
+          </div>
+        
+          <div class="form-group">
+              <label for="imageUrl">Logo Url</label>
+              <input  #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" type="text" class="form-control" required>
+            </div>
+          <button class="btn btn-primary">Save</button>
+        </form>
+  </div>
+
+  <div class="col-md-6">
+      <div class="card" style="width: 18rem;">
+          <img class="card-img-top" [src]="imageUrl.value">
+          <div class="card-body">
+            <h4 class="card-title">{{ businessName.value }}</h4>
+            <p class="card-text">{{ category.value  }}</p>
+            
+          </div>
+        </div>
+  </div>
+
+</div>
+

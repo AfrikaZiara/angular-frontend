@@ -1,3 +1,5 @@
+import { OperatorService } from './operator.service';
+import { TourOperatorCategory } from './tour-operator-category.service';
 import { TourOperatorAuthGuard } from './tour-operator-auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { UserService } from './user.service';
@@ -7,6 +9,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -31,6 +34,7 @@ import { TourOperatorsComponent } from './tour-operators/tour-operators.componen
 import { TourOperatorBookingsComponent } from './tour-operator/tour-operator-bookings/tour-operator-bookings.component';
 import { AdminTourOperatorsComponent } from './admin/admin-tour-operators/admin-tour-operators.component';
 import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.component';
+import { AdminTourOperatorFormComponent } from './admin/admin-tour-operator-form/admin-tour-operator-form.component';
 
 
 @NgModule({
@@ -52,9 +56,11 @@ import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.co
     TourOperatorBookingsComponent,
     AdminTourOperatorsComponent,
     AdminTouristsComponent,
+    AdminTourOperatorFormComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -80,10 +86,14 @@ import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.co
       { path:'tour-operator/bookings', component:  TourOperatorBookingsComponent, canActivate:[AuthGuard] },
 
       //Routes for admin
+      { path:'admin/tours/new', component: AdminToursComponent, canActivate:[AuthGuard] },
       { path:'admin/tours', component: AdminToursComponent, canActivate:[AuthGuard] }, 
-      { path:'admin/tour-operators', component: AdminTourOperatorsComponent, canActivate:[AuthGuard] }, 
-      { path:'admin/bookings', component: AdminBookingsComponent, canActivate:[AuthGuard] },
-      { path:'admin/tourists', component: AdminTouristsComponent, canActivate:[AuthGuard] }
+      { path:'admin/tour-operators/new', component: AdminTourOperatorFormComponent, canActivate:[AuthGuard] },
+      { path:'admin/tour-operators', component: AdminTourOperatorsComponent, canActivate:[AuthGuard] },
+
+      { path:'admin/tourists/new', component: AdminTouristsComponent, canActivate:[AuthGuard] },
+      { path:'admin/tourists', component: AdminTouristsComponent, canActivate:[AuthGuard] },
+      { path:'admin/bookings', component: AdminBookingsComponent, canActivate:[AuthGuard] }
 
     ])
 
@@ -93,7 +103,9 @@ import { AdminTouristsComponent } from './admin/admin-tourists/admin-tourists.co
     AuthGuard,
     UserService,
     AdminAuthGuard,
-    TourOperatorAuthGuard
+    TourOperatorAuthGuard,
+    TourOperatorCategory,
+    OperatorService
   ],
   bootstrap: [AppComponent]
 })

@@ -21,7 +21,8 @@ export class UserService {
     });
   }
 
-  get(){
+  getAll(){
+    return this.db.list('/users');
     
   }
 
