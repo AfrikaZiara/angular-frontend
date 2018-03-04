@@ -14,4 +14,8 @@ export class OperatorService {
     return this.db.list('/tour-operators');
   }
 
+  getTourOperator(operatorId){
+    this.db.list('/tour-operators/'+ operatorId);
+  }
+
 }
