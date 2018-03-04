@@ -71,7 +71,7 @@ import { AdminTourOperatorFormComponent } from './admin/admin-tour-operator-form
       { path:'', component: HomeComponent},
       { path:'login', component: LoginComponent},
       { path:'tours', component:ToursComponent },
-      { path:'tours/<int:id>', component:TourDetailsComponent },
+      { path:'tours/:id', component:TourDetailsComponent },
       { path:'tour-operators', component: TourOperatorsComponent },
       { path:'tour-operators/<int:id>', component: TourOperatorsComponent },
 
@@ -86,15 +86,20 @@ import { AdminTourOperatorFormComponent } from './admin/admin-tour-operator-form
       { path:'tour-operator/bookings', component:  TourOperatorBookingsComponent, canActivate:[AuthGuard] },
 
       //Routes for admin
-      { path:'admin/tours/new', component: AdminToursComponent, canActivate:[AuthGuard] },
-      { path:'admin/tours', component: AdminToursComponent, canActivate:[AuthGuard] }, 
       { path:'admin/tour-operators/new', component: AdminTourOperatorFormComponent, canActivate:[AuthGuard] },
       { path:'admin/tour-operators', component: AdminTourOperatorsComponent, canActivate:[AuthGuard] },
+      { path:'admin/tour-operators/:id', component: AdminTourOperatorsComponent, canActivate:[AuthGuard] },
+
+      { path:'admin/tours/new', component: AdminToursComponent, canActivate:[AuthGuard] },
+      { path:'admin/tours', component: AdminToursComponent, canActivate:[AuthGuard] }, 
+      { path:'admin/tours/:id', component: AdminToursComponent, canActivate:[AuthGuard] },
 
       { path:'admin/tourists/new', component: AdminTouristsComponent, canActivate:[AuthGuard] },
       { path:'admin/tourists', component: AdminTouristsComponent, canActivate:[AuthGuard] },
-      { path:'admin/bookings', component: AdminBookingsComponent, canActivate:[AuthGuard] }
-
+      { path:'admin/tourists/:id', component: AdminTouristsComponent, canActivate:[AuthGuard] },
+      
+      { path:'admin/bookings', component: AdminBookingsComponent, canActivate:[AuthGuard] },
+      { path:'admin/bookings/:id', component: AdminTouristsComponent, canActivate:[AuthGuard] }
     ])
 
   ],
