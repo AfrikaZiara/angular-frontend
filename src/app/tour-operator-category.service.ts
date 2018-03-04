@@ -7,7 +7,7 @@ export class TourOperatorCategory{
   constructor(private db: AngularFireDatabase) { }
 
   getTourOperatorCategories(){
-    return this.db.list('/categories/');
+    return this.db.list('/categories').valueChanges()
   }
 
 

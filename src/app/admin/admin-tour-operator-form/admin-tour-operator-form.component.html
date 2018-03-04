@@ -16,10 +16,9 @@
         
           <div class="form-group">
               <label for="businessCategory"> Category</label>
-              <select #category="ngModel" ngModel name="category" id="businessCategory" class="form-control" required>
-                <option select="selected">--Select Category--</option>
-                <option value="Tour Operator"> Tour Operator</option>
-                <option value="Travel Agent"> Travel Agent</option>
+              <select  #category="ngModel" ngModel name="category" id="businessCategory" class="form-control" required>
+                <option value="">--Select Category--</option>
+                <option *ngFor="let cat of categories$ | async" value="{{ cat.name }}">{{ cat.name }}</option>
               </select>
           </div>
         
@@ -43,7 +42,7 @@
   </div>
 
   <div class="col-md-6">
-      <div class="card" style="width: 18rem;">
+      <div *ngIf="businessName.value" class="card" style="width: 18rem;">
           <img class="card-img-top" [src]="imageUrl.value">
           <div class="card-body">
             <h4 class="card-title">{{ businessName.value }}</h4>

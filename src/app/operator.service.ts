@@ -1,3 +1,4 @@
+import { TourOperator } from './models/tour-operator';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
@@ -10,12 +11,17 @@ export class OperatorService {
     return this.db.list('/tour-operators').push(operator);
   }
 
-  getAll(){
-    return this.db.list('/tour-operators');
+  getTourOperators(){
+    //return this.db.list('/tour-operators').valueChanges()
+    return this.db.list('/tour-operators/').valueChanges();
   }
 
   getTourOperator(operatorId){
-    this.db.list('/tour-operators/'+ operatorId);
+    return this.db.list('/tour-operators/'+ operatorId);
+  }
+
+  filterOperators(query: string){
+    //console.log(query);
   }
 
 }

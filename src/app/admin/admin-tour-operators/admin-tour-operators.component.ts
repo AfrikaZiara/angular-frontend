@@ -9,11 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-tour-operators.component.css']
 })
 export class AdminTourOperatorsComponent implements OnInit {
-  operators$;
+  tourOperators$
 
   constructor( private operatorService: OperatorService) {
-    this.operators$ = this.operatorService.getAll();
-    console.log(this.operators$)
+    this.tourOperators$ = operatorService.getTourOperators() 
+   
+   }
+
+   filterOperators(query: string){
+    //display to see if it works 
+    console.log(query);
    }
 
   ngOnInit() {

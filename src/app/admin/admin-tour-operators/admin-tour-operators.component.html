@@ -1,19 +1,26 @@
 <P>
   <a routerLink="../tour-operators/new" class="btn btn-primary">New Tour Operator</a>
 </P>
+<p>
+  <input #query (keyup)="filterOperators(query.value)" name="query"type="text" class="form-control" placeholder="Search Tour Operator...">
+</p>
 <table class="table">
   <thead>
     <tr>
-      <td>Name</td>
+      <td>Tour Operator</td>
       <td>Category</td>
       <td>Manage</td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let o of operators$">
-      <td>{{ o.businessName }}</td>
-      <td>{{ o.category }}</td>
-      <td><a [routerLink]="['admin/products', o.$key]">Edit</a></td>
+    <tr  *ngFor="let op of tourOperators$ | async">
+      <td>{{ op.businessName }}</td>
+      <td>{{ op.category }}</td>
+      <td><a [routerLink]="['../tour-operators', op.key]">Edit</a> | 
+        <a [routerLink]="['../tour-operators/:id/delete', op.$key]">Delete</a>
+      </td>
     </tr>
   </tbody>
 </table>
+
+

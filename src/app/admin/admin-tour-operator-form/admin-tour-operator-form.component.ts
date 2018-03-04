@@ -2,7 +2,8 @@ import { OperatorService } from './../../operator.service';
 import { TourOperatorCategory } from './../../tour-operator-category.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'admin-tour-operator-form',
@@ -12,9 +13,15 @@ import { Router } from '@angular/router';
 export class AdminTourOperatorFormComponent implements OnInit {
   categories$;
   
-  constructor( private router: Router, tourOperatorCategory: TourOperatorCategory, private operatorService: OperatorService) { 
+  constructor( 
+    private route: ActivatedRoute,
+    private router: Router, 
+    private tourOperatorCategory: TourOperatorCategory,
+    private operatorService: OperatorService) { 
+    
     this.categories$ = tourOperatorCategory.getTourOperatorCategories();
-    //this.router.navigate(['admin/tour-operators']);
+
+    
   }
   save(operator, route: Router){
     this.operatorService.createOperator(operator);
