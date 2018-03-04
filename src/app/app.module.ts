@@ -81,9 +81,12 @@ import { AdminTourOperatorFormComponent } from './admin/admin-tour-operator-form
       { path:'order-success', component:OrderSuccessComponent, canActivate:[AuthGuard] },
 
       //Routes for tour operator
-      { path:'tour-operator/tours/new', component: TourListingFormComponent, canActivate:[AuthGuard] },
-      { path:'tour-operator/tours', component: TourOperatorListingComponent, canActivate:[AuthGuard] },
-      { path:'tour-operator/bookings', component:  TourOperatorBookingsComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/my-dashboard', component: TourListingFormComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/my-tours/new', component: TourListingFormComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/my-tours', component: TourOperatorListingComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/my-tours/:id', component: TourOperatorListingComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/my-bookings/', component: TourOperatorListingComponent, canActivate:[AuthGuard] },
+      { path:'tour-operator/my-bookings/:id', component:  TourOperatorBookingsComponent, canActivate:[AuthGuard] },
 
       //Routes for admin
       { path:'admin/tour-operators/new', component: AdminTourOperatorFormComponent, canActivate:[AuthGuard] },
